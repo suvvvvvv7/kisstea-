@@ -1,210 +1,163 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Kisstea 🌲✨</title>
+<title>Happy Birthday Kisstea 🌌</title>
 <style>
-  body, html { margin:0; padding:0; width:100%; height:100%; font-family: 'Playfair Display', serif; background:#0b1a0f; color:#f3f3f3; overflow:hidden; }
-  .forest-bg { position:fixed; inset:0; background: linear-gradient(to top, #0b1a0f 0%, #0d2a19 80%), url('forest.png') center/cover no-repeat; z-index:0; }
+  /* Basic reset */
+  *{margin:0;padding:0;box-sizing:border-box}
+  body,html{height:100%;overflow:hidden;font-family:sans-serif;background:#0b0d12;color:#fff}
 
-  /* ===== Moon & Stars ===== */
-  .moon { position:fixed; top:10%; right:10%; width:100px; height:100px; border-radius:50%; background: radial-gradient(circle, #fdf5c9 0%, #fff 70%, transparent 100%); box-shadow:0 0 60px rgba(255,255,200,0.5); z-index:5; }
-  .star { position:fixed; width:2px; height:2px; background:#fff; border-radius:50%; opacity:0.8; z-index:4; animation:twinkle 2s infinite alternate; }
-  @keyframes twinkle { from {opacity:0.3;} to {opacity:1;} }
+  /* Slide container */
+  .slide{height:100vh;width:100vw;position:relative;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity 0.8s}
+  .slide.show{display:flex}
 
-  /* ===== Fireflies ===== */
-  .firefly { position:fixed; width:6px; height:6px; border-radius:50%; background: radial-gradient(circle, #fff, #ffd700); filter:blur(1px); opacity:0; z-index:10; pointer-events:none; }
+  /* Next button */
+  .next-btn{padding:12px 24px;background:#2a2f3c;color:#fff;border:none;border-radius:12px;cursor:pointer;margin-top:20px;font-size:1rem;transition:0.3s}
+  .next-btn:hover{background:#3c4151}
 
-  /* ===== Hero / Landing ===== */
-  .landing { position:fixed; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:20; text-align:center; }
-  .landing h1 { font-size:3rem; color:#e0c070; margin-bottom:0.5rem; }
-  .landing p { font-size:1.1rem; font-style:italic; margin-bottom:1.5rem; color:#ccc; }
-  .enter-btn { padding:12px 24px; font-size:1rem; border:none; border-radius:999px; background:#2a5f3c; color:#fff; cursor:pointer; }
+  /* Landing */
+  #slide1 h1{font-size:3rem;color:#a5d6a7;font-family:'Parisienne',cursive;text-shadow:0 0 12px #fff}
+  #slide1 p{margin-top:12px;font-size:1.2rem;color:#cfd8dc}
 
-  /* ===== Meadow / Main ===== */
-  .meadow { display:none; position:relative; z-index:15; width:100%; height:100%; overflow:auto; padding:20px; text-align:center; }
+  /* Forest Slide */
+  #slide2{background:url('forest-bg.jpg') center/cover no-repeat;overflow:hidden;flex-direction:column}
+  .firefly{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700);opacity:0;pointer-events:none;animation:fly 6s linear infinite}
 
-  /* ===== Cake ===== */
-  .cake-wrap { margin-top:40px; text-align:center; position:relative; }
-  .cake { position:relative; display:inline-block; width:220px; height:140px; border-radius:12px; background:linear-gradient(to bottom, #6b4423, #40210f); box-shadow:0 0 40px rgba(255,200,0,0.5); cursor:pointer; }
-  .cake .layer { width:90%; height:30px; margin:4px auto; border-radius:6px; background:linear-gradient(to bottom, #8b5a2b, #5b3217); }
-  .cake .flame { position:absolute; width:10px; height:14px; top:-14px; left:50%; transform:translateX(-50%); background: radial-gradient(circle, #ffd700, #ff4500); border-radius:50%; animation: flicker 0.4s infinite; }
-  @keyframes flicker { 0%,100%{opacity:1;}50%{opacity:0.3;} }
-
-  /* ===== Cake Slice Reveal Message ===== */
-  .birthday-message { display:none; margin-top:20px; font-size:1.1rem; color:#ffeebc; font-style:italic; position:relative; z-index:20; }
-  .birthday-message::before { content:"✨"; position:absolute; left:-20px; top:-10px; animation:twinkle 1.2s infinite alternate; }
-
-  /* ===== Memory Box ===== */
-  .memory-overlay { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:50; flex-wrap:wrap; padding:20px; }
-  .memory-box { background:#1b1b1b; padding:20px; border-radius:12px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center; position:relative; }
-  .memory-box::before { content:"✨"; position:absolute; top:-10px; right:-10px; font-size:2rem; animation:twinkle 1s infinite alternate; }
-  .polaroid { width:200px; height:260px; background:#fff; padding:10px; border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; box-shadow:0 8px 20px rgba(0,0,0,0.5); transition:0.3s; }
-  .polaroid:hover { box-shadow:0 0 25px rgba(255,200,0,0.7); transform:scale(1.05); }
-  .polaroid img, .polaroid video { width:100%; height:100%; object-fit:cover; border-radius:4px; }
-  .polaroid .caption { margin-top:8px; font-size:0.9rem; color:#ffeebc; text-align:center; }
-
-  .memory-close { position:absolute; top:20px; right:20px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer; }
-
-  /* ===== Ending Note ===== */
-  .ending { display:none; margin-top:30px; font-size:1.2rem; color:#ffeebc; }
-  .ending img { width:220px; border-radius:12px; margin-top:12px; box-shadow:0 0 35px rgba(255,200,0,0.7); }
-
-  /* ===== Mushrooms & Flowers ===== */
-  .magic { position:absolute; width:20px; height:20px; border-radius:50%; box-shadow:0 0 15px rgba(0,255,150,0.7); animation:float 3s infinite alternate; z-index:8; }
-  @keyframes float { 0%{transform:translateY(0);}100%{transform:translateY(-15px);} }
-
-  @media(max-width:720px){
-    .cake { width:180px; height:100px; }
-    .polaroid { width:45%; height:auto; }
-    .landing h1 { font-size:2rem; }
+  @keyframes fly{
+    0%{transform:translate(0,0);opacity:0.2}
+    50%{transform:translate(50px,-80px);opacity:0.8}
+    100%{transform:translate(100px,0);opacity:0.2}
   }
 
+  .glow-mushroom{width:24px;height:36px;background:#ff99cc;border-radius:50%;position:absolute;box-shadow:0 0 12px #ff99cc}
+
+  /* Cake Slide */
+  #slide3 .cake{width:200px;height:120px;background:linear-gradient(180deg,#fff1e0,#ffccaa);border-radius:12px;position:relative;box-shadow:0 0 24px #ffb36b;cursor:pointer}
+  .slice{position:absolute;width:60px;height:60px;background:#ff9988;top:0;right:0;border-radius:0 12px 0 0;box-shadow:0 0 16px #ff9988;transform-origin:bottom left;transition:transform 0.5s}
+  .slice.reveal{transform:rotate(120deg) translate(20px,-20px)}
+
+  .birthday-msg{margin-top:24px;font-size:1rem;color:#ffe0b2;display:none;animation:fadeIn 1s forwards}
+  @keyframes fadeIn{from{opacity:0} to{opacity:1}}
+
+  /* Memory Box Slide */
+  #slide4{flex-direction:column;background:#121518}
+  .memory-box{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}
+  .polaroid{width:160px;height:200px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.3);display:flex;flex-direction:column;align-items:center}
+  .polaroid img, .polaroid video{width:100%;height:100%;object-fit:cover}
+  .caption{font-size:0.8rem;color:#333;text-align:center;padding:4px}
+
+  /* Ending Slide */
+  #slide5{flex-direction:column;background:#0a0c10}
+  #slide5 img{width:220px;border-radius:16px;box-shadow:0 0 24px #fff;opacity:0.8;margin-bottom:16px}
+  #slide5 .note{font-size:1.1rem;max-width:400px;line-height:1.4;text-align:center;color:#ffd700}
+
+  /* Fireflies for ending */
+  .ending-firefly{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700);opacity:0.3;animation:flyEnd 5s linear infinite alternate}
+  @keyframes flyEnd{
+    0%{transform:translate(0,0) scale(0.8)}
+    50%{transform:translate(40px,-60px) scale(1)}
+    100%{transform:translate(80px,0) scale(0.8)}
+  }
+
+  @media(max-width:600px){
+    #slide1 h1{font-size:2rem}
+    .cake{width:150px;height:90px}
+    .slice{width:50px;height:50px}
+    .polaroid{width:45%;height:180px}
+    #slide5 img{width:160px}
+  }
 </style>
 </head>
 <body>
 
-<div class="forest-bg"></div>
-
-<!-- Moon -->
-<div class="moon"></div>
-
-<!-- Landing -->
-<div class="landing" id="landing">
-  <h1>Happy Birthday Kisstea!</h1>
-  <p>Tap to enter the mystical forest 🌲✨</p>
-  <button class="enter-btn" id="enterBtn">Enter</button>
-</div>
-
-<!-- Meadow -->
-<div class="meadow" id="meadow">
-
-  <!-- Floating Magical Mushrooms & Flowers -->
-  <div class="magic" style="bottom:20px; left:15%; background:#ff00ff;"></div>
-  <div class="magic" style="bottom:50px; left:40%; background:#00ffff;"></div>
-  <div class="magic" style="bottom:30px; left:70%; background:#ffdd00;"></div>
-
-  <!-- Cake -->
-  <div class="cake-wrap">
-    <div class="cake" id="cake">
-      <div class="layer"></div>
-      <div class="layer"></div>
-      <div class="flame"></div>
-    </div>
-    <div class="birthday-message" id="birthdayMessage">
-      Happy birthday Kisstea! Being roommates for those few months is gonna shine bright in my memories. Here's to more adventures w you. I miss you and shillong trip toh karke hi rahenge.
-    </div>
-  </div>
-
-  <!-- Polaroid Memory Box -->
-  <button class="enter-btn" id="openMemory">Open Memory Box 📸</button>
-  <div class="memory-overlay" id="memoryOverlay">
-    <button class="memory-close" id="memoryClose">✕</button>
-    <div class="memory-box">
-      <div class="polaroid"><img src="memory1.jpg" alt="Memory 1"><div class="caption">Our silly day</div></div>
-      <div class="polaroid"><img src="memory2.jpg" alt="Memory 2"><div class="caption">Momo mornings</div></div>
-      <div class="polaroid"><img src="memory3.jpg" alt="Memory 3"><div class="caption">Wild meadow</div></div>
-      <div class="polaroid"><img src="memory4.jpg" alt="Memory 4"><div class="caption">Late-night chaos</div></div>
-      <div class="polaroid"><video controls><source src="memoryvideo.mp4" type="video/mp4"></video><div class="caption">A small clip</div></div>
-    </div>
-  </div>
-
-  <!-- Ending Note -->
-  <div class="ending" id="ending">
-    <p>May your days always bloom in the mystical forest 🌙✨</p>
-    <img src="kisstea.jpg" alt="Kisstea">
-  </div>
-
-</div>
-
-<!-- Fireflies Container -->
-<div id="fireflyContainer"></div>
-
-<!-- Audio -->
-<audio id="bgAudio" loop autoplay>
+<!-- MUSIC -->
+<audio id="bgAudio" autoplay loop>
   <source src="salvatore.mp3" type="audio/mpeg">
 </audio>
 
+<!-- SLIDES -->
+
+<!-- Slide 1: Landing -->
+<div class="slide show" id="slide1">
+  <div>
+    <h1>Happy Birthday Kisstea!</h1>
+    <p>Enter the enchanted forest to celebrate 🎉</p>
+    <button class="next-btn" onclick="nextSlide()">Enter Forest</button>
+  </div>
+</div>
+
+<!-- Slide 2: Forest with fireflies -->
+<div class="slide" id="slide2">
+  <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+<!-- Slide 3: Cake -->
+<div class="slide" id="slide3">
+  <div>
+    <div class="cake" onclick="cutCake()">
+      <div class="slice" id="cakeSlice"></div>
+    </div>
+    <div class="birthday-msg" id="birthdayMsg">
+      Happy Birthday Kisstea! Being roommates for those few months is gonna shine bright in my memories. Here's to more adventures w you. I miss you and Shillong trip toh karke hi rahenge.
+    </div>
+    <button class="next-btn" onclick="nextSlide()">Next</button>
+  </div>
+</div>
+
+<!-- Slide 4: Memory Box -->
+<div class="slide" id="slide4">
+  <h2>Memory Box</h2>
+  <div class="memory-box">
+    <div class="polaroid"><img src="memory1.jpg"><div class="caption">Day 1</div></div>
+    <div class="polaroid"><img src="memory2.jpg"><div class="caption">Momo Morning</div></div>
+    <div class="polaroid"><img src="memory3.jpg"><div class="caption">Forest Walk</div></div>
+    <div class="polaroid"><img src="memory4.jpg"><div class="caption">Late Night</div></div>
+    <div class="polaroid"><video controls><source src="memoryvideo.mp4" type="video/mp4"></video><div class="caption">Clip</div></div>
+  </div>
+  <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+<!-- Slide 5: Ending -->
+<div class="slide" id="slide5">
+  <img src="kisstea.jpg" alt="Kisstea">
+  <div class="note">May your days always bloom in light and laughter ✨</div>
+</div>
+
 <script>
-  /* ===== Landing Enter ===== */
-  const landing = document.getElementById('landing');
-  const enterBtn = document.getElementById('enterBtn');
-  const meadow = document.getElementById('meadow');
-  enterBtn.addEventListener('click', ()=>{
-    landing.style.display='none';
-    meadow.style.display='block';
-    startFireflies(15);
-  });
+let currentSlide = 1;
+const totalSlides = 5;
 
-  /* ===== Fireflies ===== */
-  function startFireflies(count=15){
-    for(let i=0;i<count;i++){
-      const f = document.createElement('div');
-      f.className='firefly';
-      document.body.appendChild(f);
-      animateFirefly(f);
-    }
+function nextSlide(){
+  document.getElementById('slide'+currentSlide).classList.remove('show');
+  currentSlide++;
+  if(currentSlide>totalSlides) currentSlide = totalSlides;
+  document.getElementById('slide'+currentSlide).classList.add('show');
+}
+
+// Fireflies for slide 2 and ending
+function spawnFireflies(slideId,count=15){
+  const slide = document.getElementById(slideId);
+  for(let i=0;i<count;i++){
+    const f = document.createElement('div');
+    f.className = slideId==='slide5'?'ending-firefly':'firefly';
+    f.style.left = Math.random()*90+'vw';
+    f.style.top = Math.random()*80+'vh';
+    slide.appendChild(f);
   }
-  function animateFirefly(f){
-    let x = Math.random()*100;
-    let y = Math.random()*80 + 10;
-    f.style.left = x+'vw';
-    f.style.top = y+'vh';
-    f.style.opacity = 0.6 + Math.random()*0.4;
-    let dx = (Math.random()-0.5)*2;
-    let dy = (Math.random()-0.5)*1;
-    function move(){
-      x += dx;
-      y += dy;
-      if(x<0)x=0; if(x>100)x=100;
-      if(y<10)y=10; if(y>90)y=90;
-      f.style.left = x+'vw';
-      f.style.top = y+'vh';
-      requestAnimationFrame(move);
-    }
-    move();
-  }
+}
+spawnFireflies('slide2',20);
+spawnFireflies('slide5',25);
 
-  /* ===== Random Stars ===== */
-  for(let i=0;i<50;i++){
-    const s = document.createElement('div');
-    s.className='star';
-    s.style.left=Math.random()*100+'vw';
-    s.style.top=Math.random()*100+'vh';
-    s.style.width=Math.random()*2+1+'px';
-    s.style.height=Math.random()*2+1+'px';
-    document.body.appendChild(s);
-  }
-
-  /* ===== Cake Click ===== */
-  const cake = document.getElementById('cake');
-  const birthdayMessage = document.getElementById('birthdayMessage');
-  cake.addEventListener('click', ()=>{
-    const flame = cake.querySelector('.flame');
-    if(flame) flame.style.display='none';
-    birthdayMessage.style.display='block';
-    showEnding();
-  });
-
-  /* ===== Memory Box ===== */
-  const openMemory = document.getElementById('openMemory');
-  const memoryOverlay = document.getElementById('memoryOverlay');
-  const memoryClose = document.getElementById('memoryClose');
-  openMemory.addEventListener('click', ()=>{ memoryOverlay.style.display='flex'; });
-  memoryClose.addEventListener('click', ()=>{ memoryOverlay.style.display='none'; });
-
-  /* ===== Ending ===== */
-  const ending = document.getElementById('ending');
-  function showEnding(){
-    setTimeout(()=>{ ending.style.display='block'; }, 1200);
-  }
-
-  /* ===== Auto-play audio ===== */
-  const bgAudio = document.getElementById('bgAudio');
-  bgAudio.volume=0.7;
-  bgAudio.play().catch(()=>{});
-
+// Cake slice interaction
+function cutCake(){
+  const slice = document.getElementById('cakeSlice');
+  const msg = document.getElementById('birthdayMsg');
+  slice.classList.add('reveal');
+  msg.style.display='block';
+}
 </script>
+
 </body>
 </html>
