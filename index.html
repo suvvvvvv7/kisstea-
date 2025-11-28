@@ -3,126 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Kisstea 🌙</title>
-<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Italiana&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<title>Happy Birthday Kisstea 🌲✨</title>
 <style>
-:root {
-  --forest-dark:#0b1a0f;
-  --forest-light:#1c3a2d;
-  --firefly:#fdfdc4;
-  --mushroom:#ff7fbf;
-  --moon:#e6e6fa;
-  --note-bg:rgba(30,30,30,0.85);
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body,html{height:100%;overflow:hidden;font-family:"Playfair Display",serif;background:linear-gradient(180deg,var(--forest-dark),var(--forest-light));color:white;}
-.page{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  body, html { margin:0; padding:0; width:100%; height:100%; font-family: 'Playfair Display', serif; background:#0b1a0f; color:#f3f3f3; overflow:hidden; }
+  .forest-bg { position:fixed; inset:0; background: linear-gradient(to top, #0b1a0f 0%, #0d2a19 80%), url('forest.png') center/cover no-repeat; z-index:0; }
 
-/* Landing */
-.hero{text-align:center;z-index:10;padding:20px;}
-h1{font-family:"Parisienne",cursive;font-size:3rem;margin:0;text-shadow:0 4px 12px rgba(0,0,0,0.5);}
-.lead{font-style:italic;color:#ccc;margin:10px 0 18px;font-size:1rem;}
-.enter-btn{background:linear-gradient(180deg,#2b4f2d,#3e7c57);border:none;padding:12px 24px;border-radius:999px;font-weight:bold;cursor:pointer;font-family:"Italiana",serif;color:white;}
+  /* ===== Moon & Stars ===== */
+  .moon { position:fixed; top:10%; right:10%; width:100px; height:100px; border-radius:50%; background: radial-gradient(circle, #fdf5c9 0%, #fff 70%, transparent 100%); box-shadow:0 0 60px rgba(255,255,200,0.5); z-index:5; }
+  .star { position:fixed; width:2px; height:2px; background:#fff; border-radius:50%; opacity:0.8; z-index:4; animation:twinkle 2s infinite alternate; }
+  @keyframes twinkle { from {opacity:0.3;} to {opacity:1;} }
 
-/* Meadow */
-.meadow{position:fixed;inset:0;display:none;z-index:20;overflow:auto;padding:24px;}
-.container{max-width:1000px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;gap:24px;align-items:center;padding-bottom:80px;position:relative;}
+  /* ===== Fireflies ===== */
+  .firefly { position:fixed; width:6px; height:6px; border-radius:50%; background: radial-gradient(circle, #fff, #ffd700); filter:blur(1px); opacity:0; z-index:10; pointer-events:none; }
 
-/* Fireflies */
-.firefly{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700);opacity:0;pointer-events:none;z-index:150;animation:twinkle 3s infinite alternate;}
-@keyframes twinkle{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+  /* ===== Hero / Landing ===== */
+  .landing { position:fixed; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:20; text-align:center; }
+  .landing h1 { font-size:3rem; color:#e0c070; margin-bottom:0.5rem; }
+  .landing p { font-size:1.1rem; font-style:italic; margin-bottom:1.5rem; color:#ccc; }
+  .enter-btn { padding:12px 24px; font-size:1rem; border:none; border-radius:999px; background:#2a5f3c; color:#fff; cursor:pointer; }
 
-/* Glowing Mushrooms */
-.mushroom{position:absolute;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle,#ff7fbf,#ff3f90);box-shadow:0 0 12px #ff7fbf;cursor:pointer;animation:mushGlow 2s infinite alternate;}
-@keyframes mushGlow{0%{transform:scale(1);}50%{transform:scale(1.2);}100%{transform:scale(1);}}
+  /* ===== Meadow / Main ===== */
+  .meadow { display:none; position:relative; z-index:15; width:100%; height:100%; overflow:auto; padding:20px; text-align:center; }
 
-/* Forest Game */
-.game-area{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px;}
-.firefly-btn{width:50px;height:50px;border-radius:50%;background:radial-gradient(circle,#fff5b0,#ffff80);cursor:pointer;box-shadow:0 0 6px #fff5b0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+  /* ===== Cake ===== */
+  .cake-wrap { margin-top:40px; text-align:center; position:relative; }
+  .cake { position:relative; display:inline-block; width:220px; height:140px; border-radius:12px; background:linear-gradient(to bottom, #6b4423, #40210f); box-shadow:0 0 40px rgba(255,200,0,0.5); cursor:pointer; }
+  .cake .layer { width:90%; height:30px; margin:4px auto; border-radius:6px; background:linear-gradient(to bottom, #8b5a2b, #5b3217); }
+  .cake .flame { position:absolute; width:10px; height:14px; top:-14px; left:50%; transform:translateX(-50%); background: radial-gradient(circle, #ffd700, #ff4500); border-radius:50%; animation: flicker 0.4s infinite; }
+  @keyframes flicker { 0%,100%{opacity:1;}50%{opacity:0.3;} }
 
-/* Cake */
-.cake-wrap{margin-top:24px;text-align:center;position:relative;}
-.cake{width:180px;height:120px;border-radius:12px;background:linear-gradient(180deg,#3b5a3d,#2b4f2d);position:relative;box-shadow:0 8px 20px rgba(0,0,0,0.5);}
-.slice{width:60px;height:80px;background:linear-gradient(180deg,#fff5d1,#fff0a0);position:absolute;bottom:0;left:60px;border-radius:6px;display:none;justify-content:center;align-items:center;flex-direction:column;padding:8px;text-align:center;color:#222;font-weight:bold;box-shadow:0 6px 20px rgba(255,255,200,0.5);}
-.cake-btn{margin-top:12px;padding:8px 16px;border-radius:999px;border:none;background:#6b9f6b;color:white;font-weight:bold;cursor:pointer;}
+  /* ===== Cake Slice Reveal Message ===== */
+  .birthday-message { display:none; margin-top:20px; font-size:1.1rem; color:#ffeebc; font-style:italic; position:relative; z-index:20; }
+  .birthday-message::before { content:"✨"; position:absolute; left:-20px; top:-10px; animation:twinkle 1.2s infinite alternate; }
 
-/* Confetti */
-.confetti{position:absolute;width:6px;height:6px;background:yellow;border-radius:50%;pointer-events:none;z-index:200;animation:fall 3s linear infinite;}
-@keyframes fall{0%{transform:translateY(0);}100%{transform:translateY(800px) rotate(360deg);}}
+  /* ===== Memory Box ===== */
+  .memory-overlay { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:50; flex-wrap:wrap; padding:20px; }
+  .memory-box { background:#1b1b1b; padding:20px; border-radius:12px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center; position:relative; }
+  .memory-box::before { content:"✨"; position:absolute; top:-10px; right:-10px; font-size:2rem; animation:twinkle 1s infinite alternate; }
+  .polaroid { width:200px; height:260px; background:#fff; padding:10px; border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; box-shadow:0 8px 20px rgba(0,0,0,0.5); transition:0.3s; }
+  .polaroid:hover { box-shadow:0 0 25px rgba(255,200,0,0.7); transform:scale(1.05); }
+  .polaroid img, .polaroid video { width:100%; height:100%; object-fit:cover; border-radius:4px; }
+  .polaroid .caption { margin-top:8px; font-size:0.9rem; color:#ffeebc; text-align:center; }
 
-/* Birthday note */
-.note{margin-top:24px;width:90%;max-width:600px;background:var(--note-bg);padding:16px;border-radius:12px;text-align:center;opacity:0;transform:translateY(8px);transition:all 0.7s ease;position:relative;}
-.note.show{opacity:1;transform:translateY(0);}
-.note img{width:200px;border-radius:12px;margin-top:12px;}
-.note .sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,#fff5b0,#ffff80);animation:twinkle 2s infinite alternate;}
+  .memory-close { position:absolute; top:20px; right:20px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer; }
 
-/* Polaroid memory box */
-.memory-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:2000;overflow:auto;padding:24px;}
-.memory-overlay.show{display:flex;}
-.memory-box{background:#222;padding:20px;border-radius:12px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;max-width:90%;}
-.polaroid{width:200px;height:240px;background:white;padding:8px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;box-shadow:0 6px 20px rgba(0,0,0,0.4);}
-.polaroid img, .polaroid video{width:100%;height:100%;object-fit:cover;border-radius:6px;}
+  /* ===== Ending Note ===== */
+  .ending { display:none; margin-top:30px; font-size:1.2rem; color:#ffeebc; }
+  .ending img { width:220px; border-radius:12px; margin-top:12px; box-shadow:0 0 35px rgba(255,200,0,0.7); }
 
-@media (max-width:720px){
-  h1{font-size:2.2rem;}
-  .cake{width:140px;height:100px;}
-  .slice{width:50px;height:70px;left:45px;}
-  .firefly-btn{width:40px;height:40px;}
-  .polaroid{width:45%;height:auto;}
-}
+  /* ===== Mushrooms & Flowers ===== */
+  .magic { position:absolute; width:20px; height:20px; border-radius:50%; box-shadow:0 0 15px rgba(0,255,150,0.7); animation:float 3s infinite alternate; z-index:8; }
+  @keyframes float { 0%{transform:translateY(0);}100%{transform:translateY(-15px);} }
+
+  @media(max-width:720px){
+    .cake { width:180px; height:100px; }
+    .polaroid { width:45%; height:auto; }
+    .landing h1 { font-size:2rem; }
+  }
+
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- Landing -->
-  <div class="hero" id="landing">
-    <h1>Happy Birthday, Kisstea!</h1>
-    <p class="lead">Step into the enchanted forest and your magical birthday surprise awaits.</p>
-    <button class="enter-btn" id="enterBtn">Enter Forest</button>
+<div class="forest-bg"></div>
+
+<!-- Moon -->
+<div class="moon"></div>
+
+<!-- Landing -->
+<div class="landing" id="landing">
+  <h1>Happy Birthday Kisstea!</h1>
+  <p>Tap to enter the mystical forest 🌲✨</p>
+  <button class="enter-btn" id="enterBtn">Enter</button>
+</div>
+
+<!-- Meadow -->
+<div class="meadow" id="meadow">
+
+  <!-- Floating Magical Mushrooms & Flowers -->
+  <div class="magic" style="bottom:20px; left:15%; background:#ff00ff;"></div>
+  <div class="magic" style="bottom:50px; left:40%; background:#00ffff;"></div>
+  <div class="magic" style="bottom:30px; left:70%; background:#ffdd00;"></div>
+
+  <!-- Cake -->
+  <div class="cake-wrap">
+    <div class="cake" id="cake">
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="flame"></div>
+    </div>
+    <div class="birthday-message" id="birthdayMessage">
+      Happy birthday Kisstea! Being roommates for those few months is gonna shine bright in my memories. Here's to more adventures w you. I miss you and shillong trip toh karke hi rahenge.
+    </div>
   </div>
 
-  <!-- Meadow / Forest -->
-  <main class="meadow" id="meadow">
-    <div class="container">
-
-      <!-- Forest Game -->
-      <div class="game-area" id="gameArea">
-        <div class="section-title">Catch the glowing fireflies!</div>
-      </div>
-
-      <!-- Cake -->
-      <div class="cake-wrap">
-        <div class="cake" id="cake">
-          <div class="slice" id="cakeSlice">
-            <div>Happy Birthday Kisstea!</div>
-            <div style="font-size:0.9rem;margin-top:4px;">Being roommates for those few months will shine bright in my memories. Here's to more adventures w you. I miss you and Shillong trip toh karke hi rahenge.</div>
-          </div>
-        </div>
-        <button class="cake-btn" id="cakeBtn">Cut the Cake</button>
-      </div>
-
-      <!-- Birthday Note -->
-      <div class="note" id="birthdayNote">
-        <p>May your days be magical like this enchanted forest ✨</p>
-        <img src="kisstea.jpg" alt="Kisstea">
-      </div>
-
-    </div>
-  </main>
-
   <!-- Polaroid Memory Box -->
+  <button class="enter-btn" id="openMemory">Open Memory Box 📸</button>
   <div class="memory-overlay" id="memoryOverlay">
+    <button class="memory-close" id="memoryClose">✕</button>
     <div class="memory-box">
-      <div class="polaroid"><img src="memory1.jpg" alt="Memory 1"></div>
-      <div class="polaroid"><img src="memory2.jpg" alt="Memory 2"></div>
-      <div class="polaroid"><img src="memory3.jpg" alt="Memory 3"></div>
-      <div class="polaroid"><img src="memory4.jpg" alt="Memory 4"></div>
-      <div class="polaroid"><video controls><source src="memoryvideo.mp4" type="video/mp4">Your browser does not support video.</video></div>
+      <div class="polaroid"><img src="memory1.jpg" alt="Memory 1"><div class="caption">Our silly day</div></div>
+      <div class="polaroid"><img src="memory2.jpg" alt="Memory 2"><div class="caption">Momo mornings</div></div>
+      <div class="polaroid"><img src="memory3.jpg" alt="Memory 3"><div class="caption">Wild meadow</div></div>
+      <div class="polaroid"><img src="memory4.jpg" alt="Memory 4"><div class="caption">Late-night chaos</div></div>
+      <div class="polaroid"><video controls><source src="memoryvideo.mp4" type="video/mp4"></video><div class="caption">A small clip</div></div>
     </div>
+  </div>
+
+  <!-- Ending Note -->
+  <div class="ending" id="ending">
+    <p>May your days always bloom in the mystical forest 🌙✨</p>
+    <img src="kisstea.jpg" alt="Kisstea">
   </div>
 
 </div>
+
+<!-- Fireflies Container -->
+<div id="fireflyContainer"></div>
 
 <!-- Audio -->
 <audio id="bgAudio" loop autoplay>
@@ -130,103 +127,84 @@ h1{font-family:"Parisienne",cursive;font-size:3rem;margin:0;text-shadow:0 4px 12
 </audio>
 
 <script>
-const landing = document.getElementById('landing');
-const enterBtn = document.getElementById('enterBtn');
-const meadow = document.getElementById('meadow');
-const bgAudio = document.getElementById('bgAudio');
-const gameArea = document.getElementById('gameArea');
-const cakeBtn = document.getElementById('cakeBtn');
-const cakeSlice = document.getElementById('cakeSlice');
-const birthdayNote = document.getElementById('birthdayNote');
-const memoryOverlay = document.getElementById('memoryOverlay');
+  /* ===== Landing Enter ===== */
+  const landing = document.getElementById('landing');
+  const enterBtn = document.getElementById('enterBtn');
+  const meadow = document.getElementById('meadow');
+  enterBtn.addEventListener('click', ()=>{
+    landing.style.display='none';
+    meadow.style.display='block';
+    startFireflies(15);
+  });
 
-/* Enter Forest */
-enterBtn.addEventListener('click', () => {
-  landing.style.display='none';
-  meadow.style.display='block';
+  /* ===== Fireflies ===== */
+  function startFireflies(count=15){
+    for(let i=0;i<count;i++){
+      const f = document.createElement('div');
+      f.className='firefly';
+      document.body.appendChild(f);
+      animateFirefly(f);
+    }
+  }
+  function animateFirefly(f){
+    let x = Math.random()*100;
+    let y = Math.random()*80 + 10;
+    f.style.left = x+'vw';
+    f.style.top = y+'vh';
+    f.style.opacity = 0.6 + Math.random()*0.4;
+    let dx = (Math.random()-0.5)*2;
+    let dy = (Math.random()-0.5)*1;
+    function move(){
+      x += dx;
+      y += dy;
+      if(x<0)x=0; if(x>100)x=100;
+      if(y<10)y=10; if(y>90)y=90;
+      f.style.left = x+'vw';
+      f.style.top = y+'vh';
+      requestAnimationFrame(move);
+    }
+    move();
+  }
+
+  /* ===== Random Stars ===== */
+  for(let i=0;i<50;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    s.style.left=Math.random()*100+'vw';
+    s.style.top=Math.random()*100+'vh';
+    s.style.width=Math.random()*2+1+'px';
+    s.style.height=Math.random()*2+1+'px';
+    document.body.appendChild(s);
+  }
+
+  /* ===== Cake Click ===== */
+  const cake = document.getElementById('cake');
+  const birthdayMessage = document.getElementById('birthdayMessage');
+  cake.addEventListener('click', ()=>{
+    const flame = cake.querySelector('.flame');
+    if(flame) flame.style.display='none';
+    birthdayMessage.style.display='block';
+    showEnding();
+  });
+
+  /* ===== Memory Box ===== */
+  const openMemory = document.getElementById('openMemory');
+  const memoryOverlay = document.getElementById('memoryOverlay');
+  const memoryClose = document.getElementById('memoryClose');
+  openMemory.addEventListener('click', ()=>{ memoryOverlay.style.display='flex'; });
+  memoryClose.addEventListener('click', ()=>{ memoryOverlay.style.display='none'; });
+
+  /* ===== Ending ===== */
+  const ending = document.getElementById('ending');
+  function showEnding(){
+    setTimeout(()=>{ ending.style.display='block'; }, 1200);
+  }
+
+  /* ===== Auto-play audio ===== */
+  const bgAudio = document.getElementById('bgAudio');
+  bgAudio.volume=0.7;
   bgAudio.play().catch(()=>{});
-  spawnFireflies(30);
-  spawnMushrooms(10);
-  spawnGameFireflies(8);
-});
 
-/* Fireflies */
-function spawnFireflies(n=15){
-  for(let i=0;i<n;i++){
-    const f = document.createElement('div');
-    f.className='firefly';
-    f.style.left=Math.random()*100+'vw';
-    f.style.top=Math.random()*80+'vh';
-    document.body.appendChild(f);
-  }
-}
-
-/* Glowing Mushrooms */
-function spawnMushrooms(n=8){
-  const container=document.querySelector('.container');
-  for(let i=0;i<n;i++){
-    const m = document.createElement('div');
-    m.className='mushroom';
-    m.style.left=Math.random()*90+'%';
-    m.style.top=Math.random()*70+'%';
-    container.appendChild(m);
-  }
-}
-
-/* Forest Game Fireflies */
-function spawnGameFireflies(n=6){
-  for(let i=0;i<n;i++){
-    const btn = document.createElement('button');
-    btn.className='firefly-btn';
-    btn.textContent='✨';
-    btn.addEventListener('click',()=>{
-      btn.style.visibility='hidden';
-      if([...gameArea.children].every(b=>b.style.visibility==='hidden')){
-        showCake();
-      }
-    });
-    gameArea.appendChild(btn);
-  }
-}
-
-/* Cake Interaction */
-function showCake(){
-  cakeSlice.style.display='flex';
-  showBirthdayNote();
-  spawnConfetti(30);
-}
-
-/* Birthday Note with sparkles */
-function showBirthdayNote(){
-  birthdayNote.classList.add('show');
-  for(let i=0;i<15;i++){
-    const sp=document.createElement('div');
-    sp.className='sparkle';
-    sp.style.left=Math.random()*90+'%';
-    sp.style.top=Math.random()*50+'%';
-    birthdayNote.appendChild(sp);
-  }
-}
-
-/* Confetti */
-function spawnConfetti(n=20){
-  for(let i=0;i<n;i++){
-    const c=document.createElement('div');
-    c.className='confetti';
-    c.style.left=Math.random()*100+'%';
-    c.style.background=['#ff0','#f0f','#0ff','#fff'][Math.floor(Math.random()*4)];
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),3000);
-  }
-}
-
-/* Memory Box */
-cakeSlice.addEventListener('click', ()=>{
-  memoryOverlay.classList.add('show');
-});
-memoryOverlay.addEventListener('click', ()=>{
-  memoryOverlay.classList.remove('show');
-});
 </script>
 </body>
 </html>
